@@ -99,7 +99,7 @@ class AdminController extends Controller
                 ->except([$request->get('password') ? '' : 'password']
         ));
 
-        return redirect()->route('admins.index')->withStatus(__('Admin successfully updated.'));
+        return redirect()->route('admins.index')->withStatus(__('Admin successfully Updated.'));
     }
 
     /**

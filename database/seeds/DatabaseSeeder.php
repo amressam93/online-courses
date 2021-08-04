@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($users as $user)
         {
-            $tracks_ids   = [];
+            $tracks_ids   =  [];
             $tracks_ids[] =  track::all()->random()->id;
             $tracks_ids[] =  track::all()->random()->id;
 
