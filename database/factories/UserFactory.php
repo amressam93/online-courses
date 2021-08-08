@@ -49,7 +49,7 @@ $factory->define(track::class, function (Faker $faker) {
 
 $factory->define(course::class, function (Faker $faker) {
     return [
-        'title'    => $faker->paragraph,
+        'title'    => $faker->paragraph(1),
         'status'   => $faker->randomElement([0,1]),
         'link'     => $faker->url,
         'track_id' => track::all()->random()->id,

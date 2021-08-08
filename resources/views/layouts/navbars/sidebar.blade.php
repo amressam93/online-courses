@@ -167,12 +167,12 @@
                     <div class="collapse" id="courses-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
+                                <a class="nav-link" href="{{ route('courses.create') }}">
                                     {{ __('Add Course') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">
+                                <a class="nav-link" href="{{ route('courses.index') }}">
                                     {{ __('All Courses') }}
                                 </a>
                             </li>
@@ -198,7 +198,7 @@
                         <i class="fa fa-question text-orange"></i> {{ __('Questions') }}
                     </a>
                 </li>
-             
+
 {{--                <li class="nav-item mb-5" style="position: absolute; bottom: 0;">--}}
 {{--                    <a class="nav-link" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">--}}
 {{--                        <i class="ni ni-cloud-download-95"></i> Upgrade to PRO--}}

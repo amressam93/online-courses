@@ -18,11 +18,11 @@ class TrackController extends Controller
      */
     public function index()
     {
-        $countOfTrack = track::all()->count();     // get count of tracks.
+        $countOfTracks = track::all()->count();     // get count of tracks.
 
         $tracks =  track::orderBy('id','desc')->paginate(15);
 
-        return view('admin.tracks.index',['tracks' => $tracks,'countOfTrack' => $countOfTrack]);
+        return view('admin.tracks.index',['tracks' => $tracks,'countOfTracks' => $countOfTracks]);
     }
 
 
