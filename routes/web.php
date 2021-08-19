@@ -42,7 +42,21 @@ Route::group(['middleware' => ['auth','Admin'] ], function () {
 
     Route::resource('admin/tracks', 'Admin\TrackController');
 
+    Route::resource('admin/track.course', 'Admin\TrackCourseController');
+
     Route::resource('admin/courses', 'Admin\CourseController');
+
+    Route::resource('admin/course.video', 'Admin\CourseVideoController');
+
+    Route::resource('admin/course.quiz', 'Admin\CourseQuizController');
+
+    Route::resource('admin/videos', 'Admin\VideoController');
+
+    Route::resource('admin/quizzes', 'Admin\QuizController');
+
+    Route::resource('admin/quiz.question', 'Admin\QuizQuestionController');
+
+    Route::resource('admin/questions', 'Admin\QuestionController');
 
 	Route::get('admin/profile', ['as' => 'profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 

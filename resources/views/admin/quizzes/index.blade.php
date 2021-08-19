@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Courses Management')])
+@extends('layouts.app', ['title' => __('Quizzes Management')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -10,10 +10,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Courses') }} ({{$countOfCourses}})</h3>
+                                <h3 class="mb-0">{{ __('Quizzes') }} ({{$countOfQuizzes}})</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('courses.create') }}" class="btn btn-sm btn-primary">{{ __('Add Course') }}</a>
+                                <a href="{{ route('quizzes.create') }}" class="btn btn-sm btn-primary">{{ __('Add Quiz') }}</a>
                             </div>
                         </div>
                     </div>
@@ -33,6 +33,8 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                             <tr>
+                                <th scope="col">{{ __('Quiz Name') }}</th>
+                                <th scope="col">{{ __('NO. Of Questions') }}</th>
                                 <th scope="col">{{ __('Course Name') }}</th>
                                 <th scope="col">{{ __('Creation Date') }}</th>
                                 <th scope="col">{{ __('Last updated') }}</th>
@@ -40,26 +42,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(count($courses))
-                                @foreach ($courses as $course)
+                            @if(count($quizzes))
+                                @foreach ($quizzes as $quiz)
                                     <tr>
-                                        <td>
-                                            <div class="media align-items-center">
-                                                <a href="#" class="avatar rounded mr-3" style="width: 156px;height: 93px">
-                                                    @if($course->photo)
-                                                    <img alt="Course Photo" src="/images/{{$course->photo->filename}}" class="img-thumbnail rounded">
-                                                    @else
-                                                        <img alt="Course Photo" src="/images/cases/no_image_found.jpg" class="img-thumbnail rounded">
-                                                    @endif
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="name mb-0 text-sm"><a href="{{route('courses.show',$course->id)}}">{{$course->title}}</a></span>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td><a href="{{route('quizzes.show',$quiz->id)}}">{{$quiz->name}}</a></td>
 
-                                        <td>{{ $course->created_at->diffForHumans() }}</td>
-                                        <td>{{ $course->updated_at->diffForHumans() }}</td>
+                                        <td>{{ ($quiz->questions->count() == 0 ? 'No Question' : $quiz->questions->count()) }}</td>
+
+                                        <td><a href="{{route('courses.show',$quiz->course->id)}}">{{$quiz->course->title}}</a></td>
+
+                                        <td>{{ $quiz->created_at->diffForHumans() }}</td>
+
+                                        <td>{{ $quiz->updated_at->diffForHumans() }}</td>
 
                                         <td class="text-right">
                                             <div class="dropdown">
@@ -68,13 +62,13 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                                    <form action="{{ route('courses.destroy', $course) }}" method="post">
+                                                    <form action="{{ route('quizzes.destroy', $quiz) }}" method="post">
                                                         @csrf
                                                         @method('delete')
 
-                                                        <a class="dropdown-item" href="{{ route('courses.edit', $course) }}">{{ __('Edit') }}</a>
-                                                        <a class="dropdown-item" href="{{ route('courses.show', $course) }}">{{ __('Show') }}</a>
-                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this Course?") }}') ? this.parentElement.submit() : ''">
+                                                        <a class="dropdown-item" href="{{ route('quizzes.edit', $quiz) }}">{{ __('Edit') }}</a>
+                                                        <a class="dropdown-item" href="{{ route('quizzes.show', $quiz) }}">{{ __('Show') }}</a>
+                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this Quiz?") }}') ? this.parentElement.submit() : ''">
                                                             {{ __('Delete') }}
                                                         </button>
                                                     </form>
@@ -85,14 +79,14 @@
                                     </tr>
                                 @endforeach
                             @else
-                                <p class="lead text-center">No Courses Found.</p>
+                                <p class="lead text-center">No Quizzes Found.</p>
                             @endif
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $courses->links() }}
+                            {{ $quizzes->links() }}
                         </nav>
                     </div>
                 </div>
@@ -102,5 +96,6 @@
         @include('layouts.footers.auth')
     </div>
 @endsection
+
 
 

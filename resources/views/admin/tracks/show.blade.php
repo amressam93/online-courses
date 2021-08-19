@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Courses Management')])
+@extends('layouts.app', ['title' => __('Tracks Management')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -7,13 +7,15 @@
         <div class="row">
             <div class="col">
                 <div class="card shadow">
+
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Courses') }} ({{$countOfCourses}})</h3>
+                                <h3 class="mb-0">{{ __('Track: ') }}  {{$track->name}}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('courses.create') }}" class="btn btn-sm btn-primary">{{ __('Add Course') }}</a>
+                                <a href="{{route('track.course.create',$track->id)}}" class="btn btn-sm btn-primary">{{ __('Add Course') }}</a>
+                                <a href="{{route('tracks.index')}}" class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                             </div>
                         </div>
                     </div>
@@ -40,14 +42,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(count($courses))
-                                @foreach ($courses as $course)
+                            @if(count($track->courses))
+                                @foreach ($track->courses as $course)
                                     <tr>
                                         <td>
                                             <div class="media align-items-center">
                                                 <a href="#" class="avatar rounded mr-3" style="width: 156px;height: 93px">
                                                     @if($course->photo)
-                                                    <img alt="Course Photo" src="/images/{{$course->photo->filename}}" class="img-thumbnail rounded">
+                                                        <img alt="Course Photo" src="/images/{{$course->photo->filename}}" class="img-thumbnail rounded">
                                                     @else
                                                         <img alt="Course Photo" src="/images/cases/no_image_found.jpg" class="img-thumbnail rounded">
                                                     @endif
@@ -92,7 +94,7 @@
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $courses->links() }}
+{{--                            {{ $courses->links() }}--}}
                         </nav>
                     </div>
                 </div>

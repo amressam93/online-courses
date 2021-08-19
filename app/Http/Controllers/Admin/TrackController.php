@@ -76,6 +76,8 @@ class TrackController extends Controller
     public function show(track $track)
     {
         // return all courses related to this track.
+
+        return view('admin.tracks.show',compact('track'));
     }
 
 

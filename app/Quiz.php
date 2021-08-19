@@ -8,6 +8,7 @@ class Quiz extends Model
 {
     protected $fillable = [
         'name',
+        'course_id'
     ];
 
 
@@ -32,5 +33,7 @@ class Quiz extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+
 
 }
