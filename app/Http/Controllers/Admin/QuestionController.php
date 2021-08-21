@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -14,7 +15,12 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $countOfQuestions = Question::all()->count();    // get count of all Questions.
+
+        $questions = Question::orderBy('id','desc')->paginate(15);
+
+        return view('admin.questions.index',['questions' => $questions,'countOfQuestions' => $countOfQuestions]);
+
     }
 
     /**
