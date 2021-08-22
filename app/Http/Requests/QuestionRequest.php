@@ -24,7 +24,7 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' =>        ['required','min:20','max:750'],
+            'title' =>        ['required','min:10','max:750'],
             'answers' =>      ['required','min:10','max:1000'],
             'right_answer' => ['required','min:3','max:50'],
             'score'        => ['required','integer','in:5,10,15,20,25,30'],

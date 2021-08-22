@@ -45,7 +45,7 @@
                             @if(count($questions))
                                 @foreach ($questions as $question)
                                     <tr>
-                                        <td title="{{$question->title}}"><a href="{{route('questions.show',$question->id)}}">{{$question->title}}</a></td>
+                                        <td title="{{$question->title}}">{{$question->title}}</td>
 
                                         <td>{{$question->right_answer}}</td>
 
@@ -67,7 +67,7 @@
                                                         @method('delete')
 
                                                         <a class="dropdown-item" href="{{ route('questions.edit', $question) }}">{{ __('Edit') }}</a>
-                                                        <a class="dropdown-item" href="{{ route('questions.show', $question) }}">{{ __('Show') }}</a>
+
                                                         <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this Question?") }}') ? this.parentElement.submit() : ''">
                                                             {{ __('Delete') }}
                                                         </button>

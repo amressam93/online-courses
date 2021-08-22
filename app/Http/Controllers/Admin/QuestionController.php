@@ -59,16 +59,7 @@ class QuestionController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -76,9 +67,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
-        //
+        return view('admin.questions.edit',compact('question'));
     }
 
     /**
@@ -88,9 +79,21 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        if(
+            $question->update([
+                'title'        => $request->title,
+                'answers'      => $request->answers,
+                'right_answer' => $request->right_answer,
+                'score'        => $request->score,
+                'quiz_id'      => $request->quiz_id
+            ])
+        )
+
+            return redirect()->route('questions.index')->withStatus(__('Question Successfuly Updated'));
+
+                return redirect()->route('questions.edit',$question->id)->withStatus(__('Something is Wrong , Try Again'));
     }
 
     /**
@@ -99,8 +102,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        if($question->delete())
+
+            return redirect()->route('questions.index')->withStatus(__('Question Successfuly Deleted'));
+
     }
 }
