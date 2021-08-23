@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth','Admin'] ], function () {
 
     Route::resource('admin/questions', 'Admin\QuestionController',['except' => ['show']]);
 
-	Route::get('admin/profile', ['as' => 'profile.edit', 'uses' => 'Admin\ProfileController@edit']);
+    Route::get('admin/profile', ['as' => 'profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 
 	Route::put('admin/profile', ['as' => 'profile.update', 'uses' => 'Admin\ProfileController@update']);
 

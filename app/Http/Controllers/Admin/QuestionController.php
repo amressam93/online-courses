@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -58,6 +61,9 @@ class QuestionController extends Controller
               return redirect()->route("questions.create")->withStatus(__('Something is Wrong , Try Again'));
 
     }
+
+
+
 
 
 
