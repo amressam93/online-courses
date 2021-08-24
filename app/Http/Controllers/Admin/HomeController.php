@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\course;
 use App\Http\Controllers\Controller;
+use App\Quiz;
+use App\track;
+use App\User;
 
 class HomeController extends Controller
 {
