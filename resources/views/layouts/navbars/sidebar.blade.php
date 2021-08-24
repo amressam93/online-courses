@@ -136,7 +136,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link " href="#tracks-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="courses-examples">
-                        <i class="fas fa-chalkboard-teacher" style="color: #5e72e4;"></i>
+                        <i class="fas fa-chart-bar" style="color: #5e72e4;"></i>
                         <span class="nav-link-text" style="color: #5e72e4;">{{ __('Tracks') }}</span>
                     </a>
 
@@ -190,7 +190,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('quizzes.index')}}">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Quizzes') }}
+                        <i class="fas fa-edit text-orange"></i> {{ __('Quizzes') }}
                     </a>
                 </li>
                 <li class="nav-item">
