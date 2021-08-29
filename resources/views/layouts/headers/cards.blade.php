@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                        <i class="fas fa-chart-pie"></i>
+                                        <i class="fas fa-chalkboard-teacher"></i>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                        <i class="fas fa-percent"></i>
+                                        <i class="fas fa-edit"></i>
                                     </div>
                                 </div>
                             </div>

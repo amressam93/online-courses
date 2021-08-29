@@ -162,10 +162,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Page visits</h3>
+                                <h3 class="mb-0">Recent Quizzes</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                                <a href="{{route('quizzes.index')}}" class="btn btn-sm btn-primary">See all</a>
                             </div>
                         </div>
                     </div>
@@ -174,83 +174,60 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Page name</th>
-                                    <th scope="col">Visitors</th>
-                                    <th scope="col">Unique users</th>
-                                    <th scope="col">Bounce rate</th>
+                                    <th scope="col">{{ __('Quiz Name') }}</th>
+                                    <th scope="col">{{ __('NO. Of Questions') }}</th>
+                                    <th scope="col">{{ __('Course Name') }}</th>
+                                    <th scope="col">{{ __('Creation Date') }}</th>
+                                    <th scope="col">{{ __('Last updated') }}</th>
+                                    <th scope="col" class="text-right">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/
-                                    </th>
-                                    <td>
-                                        4,569
-                                    </td>
-                                    <td>
-                                        340
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/index.html
-                                    </th>
-                                    <td>
-                                        3,985
-                                    </td>
-                                    <td>
-                                        319
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/charts.html
-                                    </th>
-                                    <td>
-                                        3,513
-                                    </td>
-                                    <td>
-                                        294
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/tables.html
-                                    </th>
-                                    <td>
-                                        2,050
-                                    </td>
-                                    <td>
-                                        147
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/profile.html
-                                    </th>
-                                    <td>
-                                        1,795
-                                    </td>
-                                    <td>
-                                        190
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
+                            @if(count($quizzes))
+                                @foreach($quizzes as $quiz)
+                                    <tr>
+                                        <td><a href="{{route('quizzes.show',$quiz->id)}}">{{$quiz->name}}</a></td>
+
+                                        <td>
+                                            @if(count($quiz->questions) == 0)
+                                                <span class="badge badge-pill badge-warning lower">No Questions</span>
+                                            @else
+                                                <span class="badge badge-pill badge-success lower">{{$quiz->questions->count()}}</span>
+                                            @endif
+                                        </td>
+
+                                        <td><a href="{{route('courses.show',$quiz->course->id)}}">{{$quiz->course->title}}</a></td>
+
+                                        <td>{{ $quiz->created_at->diffForHumans() }}</td>
+
+                                        <td>{{ $quiz->updated_at->diffForHumans() }}</td>
+
+                                        <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
+                                                    <form action="{{ route('quizzes.destroy', $quiz) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+
+                                                        <a class="dropdown-item" href="{{ route('quizzes.edit', $quiz) }}">{{ __('Edit') }}</a>
+                                                        <a class="dropdown-item" href="{{ route('quizzes.show', $quiz) }}">{{ __('Show') }}</a>
+                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this Quiz?") }}') ? this.parentElement.submit() : ''">
+                                                            {{ __('Delete') }}
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                            <td> No Quizzes Found. </td>
+                            @endif
                             </tbody>
                         </table>
                     </div>
