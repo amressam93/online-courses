@@ -253,6 +253,7 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Verified</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col">Role</th>
                                     <th scope="col">Action</th>
@@ -265,6 +266,13 @@
                                         <td>{{ $user->name }}</td>
                                         <td>
                                             <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                        </td>
+                                        <td>
+                                            @if($user->email_verified_at != NULL)
+                                                <span class="badge badge-pill badge-success lower">Verified</span>
+                                            @else
+                                                <span class="badge badge-pill badge-warning lower">UnVerified</span>
+                                            @endif
                                         </td>
                                         <td>{{ $user->created_at->format('Y/m/d H:i') }}</td>
                                         <td>{{$user->admin == 0 ? "User" : ($user->admin == 1 ? "Admin" : "")}}</td>
