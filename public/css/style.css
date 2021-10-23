@@ -1,0 +1,63 @@
+/*   Main Color #1c5996   */
+
+
+.navbar-form {
+    -webkit-flex-basis: 100%;
+    -moz-flex-basis: 100%;
+    -ms-flex-basis: 100%;
+    -o-flex-basis: 100%;
+    flex-basis: -moz-available;
+    flex-basis: 100%;
+}
+.input-group-search {
+    width: 75% !important;
+}
+
+
+
+.navbar div a.navbar-brand,
+.navbar div ul li a.nav-link {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+
+.navbar a.navbar-brand{
+    color: #fff !important;
+}
+
+.navbar span.logo{
+    background-color: #fff;
+    color: #1c5996;
+    padding: 8px;
+    border-radius: 10px 20px;
+}
+
+.navbar{
+    background-color: #1c5996 !important;
+}
+
+
+.home_picture{
+    height: 500px;
+    background-image: url("../images/home_picture.png");
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: cover;
+}
+
+.home_picture .background_text{
+    padding: 150px 0px 0px 40px;
+
+}
+
+.home_picture .background_text h2, h4{
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+.home_picture .background_text a{
+    margin: 10px;
+}
