@@ -67,5 +67,8 @@ Route::group(['middleware' => ['auth','Admin'] ], function () {
 	Route::put('admin/profile', ['as' => 'profile.update', 'uses' => 'Admin\ProfileController@update']);
 
 	Route::put('admin/profile/password', ['as' => 'profile.password', 'uses' => 'Admin\ProfileController@password']);
+
 });
+
+
 
