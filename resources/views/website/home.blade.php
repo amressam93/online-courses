@@ -101,6 +101,7 @@
        @endauth
        <!--End Recommended to you Section -->
 
+       @php $i = 0; @endphp
 
        @foreach($tracks as $track)
 
@@ -130,7 +131,7 @@
                            <div class="card  mb-4 card-hover equal_height_slider">
                                <a href="pages/course-single.html" class="card-img-top equal_height_slider">
                                    @if($course->photo)
-                                       <img src="/images/{{$course->photo->filename}}" alt="" class="card-img-top rounded-top-md" height="100%">
+                                       <img src="/images/{{$course->photo->filename}}" alt="" class="card-img-top rounded-top-md">
                                    @else
                                        <img src="/images/cases/no_image_found.jpg" alt="" class="card-img-top rounded-top-md">
                                    @endif
@@ -160,7 +161,7 @@
                                         <i class="mdi mdi-star text-warning"></i>
                                     </span>
                                        <span class="text-warning">4.5</span>
-                                       <span class="fs-6 text-muted">({{count($course->users)}})</span>
+                                       <span class="fs-6 text-muted">({{count($course->users)}}) Enrolled</span>
                                        <br><br>
                                        @if($course->status == 0)
                                            <span class="fw-bold h4 text-success">Free</span>
@@ -196,6 +197,44 @@
        </div>
 
         @endif
+
+
+           @if ($i == 1)
+               <div class="container">
+                   <div class="row mb-4">
+                       <div class="col">
+                           <h2 class="fw-bold mb-0 text-primary">Famous Topic For You</h2>
+                       </div>
+
+                   </div>
+                   <div class="row">
+                       @foreach($famous_tracks as $track)
+                       <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                           <!-- Card -->
+                           <div class="card mb-4 card-hover">
+                               <div class="d-flex justify-content-between align-items-center p-4">
+                                   <div class="d-flex">
+                                       <div class="ms-3">
+                                           <h4 class="mb-1">
+                                               <a href="course-path-single.html" class="text-inherit">
+                                                   {{$track->name}}
+                                               </a>
+                                           </h4>
+                                           <p class="mb-0 fs-6">
+                                          <span class="me-2"><span class="text-dark fw-medium">{{$track->courses_count}} </span> Courses</span>
+                                          <span><span class="text-dark fw-medium">34 </span>Hours</span>
+                                           </p>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       @endforeach
+                   </div>
+               </div>
+           @endif
+
+           @php $i++; @endphp
 
        @endforeach
 

@@ -38,16 +38,16 @@ class HomeController extends Controller
         // user courses
         $userCourses = User::findorfail(1)->courses;
         //tracks with courses
-        $tracks = track::with('courses')->get();
+        $tracks = track::with('courses')->orderBy('id','desc')->get();
         // get tracks with name and id
         $tracksname = track::all()->pluck('name','id');
+        // get famous tracks ids
+        $famous_tracks_ids = course::pluck('track_id')->countBy()->sort()->reverse()->keys()->take(10);
 
-        $test = course::with('users')->where('id',3)->get();
+        // get famous tracks by largest track including largest number of courses
+        $famous_tracks = track::withCount('courses')->whereIn('id',$famous_tracks_ids)->orderBy('courses_count','desc')->get();
 
-       //return $test[0]->users->count();die();
-
-
-        return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','userCourses','tracks','tracksname'));
+        return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','userCourses','tracks','tracksname','famous_tracks'));
     }
 
 
