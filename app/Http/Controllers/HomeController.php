@@ -44,10 +44,19 @@ class HomeController extends Controller
         // get famous tracks ids
         $famous_tracks_ids = course::pluck('track_id')->countBy()->sort()->reverse()->keys()->take(10);
 
-        // get famous tracks by largest track including largest number of courses
+        // get famous tracks including largest number of courses inside track.
         $famous_tracks = track::withCount('courses')->whereIn('id',$famous_tracks_ids)->orderBy('courses_count','desc')->get();
 
-        return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','userCourses','tracks','tracksname','famous_tracks'));
+        // get all courses where user enrolled in this courses
+        $user_course_ids = User::findorfail(1)->courses()->pluck('id');    // 38,39,48
+
+        // get all tracks where user enrolled in this tracks
+        $user_tracks_ids = User::findorfail(1)->tracks()->pluck('id');   // 12,15,1
+
+        // recommended courses
+        $recommended_courses = course::whereIn('track_id',$user_tracks_ids)->whereNotIn('id',$user_course_ids)->get();
+
+        return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','userCourses','tracks','tracksname','famous_tracks','recommended_courses'));
     }
 
 
