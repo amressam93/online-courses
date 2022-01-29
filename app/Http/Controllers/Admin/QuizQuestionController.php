@@ -45,6 +45,7 @@ class QuizQuestionController extends Controller
             'answers'      => $request->answers,
             'right_answer' => $request->right_answer,
             'score'        => $request->score,
+            'type'        => $request->type,
             'quiz_id'      => $request->quiz_id
         ])
 

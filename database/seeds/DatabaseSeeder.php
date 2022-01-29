@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
 
         $tracks = factory('App\track',20)->create();
 
+        $levels = factory('App\CourseLevel',3)->create();
+
         foreach ($users as $user)
         {
             $tracks_ids   =  [];
@@ -54,7 +56,7 @@ class DatabaseSeeder extends Seeder
             $quizzes_ids[] = Quiz::all()->random()->id;
             $quizzes_ids[] = Quiz::all()->random()->id;
 
-          $user->quizzes()->sync($quizzes_ids);
+            $user->quizzes()->sync($quizzes_ids);
 
         }
 

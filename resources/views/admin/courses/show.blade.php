@@ -33,6 +33,7 @@
                                         <div class="course-info">
                                             <h3 class="test">{{$course->title}}</h3>
                                             <h4>Track: <a href="{{route('tracks.show',$course->track->id)}}">{{$course->track->name}}</a></h4>
+                                            <h4>Level: {{$course->level->name}}</h4>
                                             <h4>Status: <span class="{{($course->status == 0) ? 'text-success' : 'text-danger'}}">{{ ($course->status == 0 ) ? 'Free' : 'Paid' }}</span></h4>
                                         </div>
                                     </div>

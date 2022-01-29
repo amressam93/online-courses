@@ -20,6 +20,7 @@
 
         <!-- Admin custom CSS -->
         <link type="text/css" href="/css/admin_custom.css?v=1.0.0" rel="stylesheet">
+
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -45,5 +46,6 @@
 
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+
     </body>
 </html>

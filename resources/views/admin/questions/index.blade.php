@@ -45,7 +45,7 @@
                             @if(count($questions))
                                 @foreach ($questions as $question)
                                     <tr>
-                                        <td title="{{$question->title}}">{{$question->title}}</td>
+                                        <td title="{{$question->title}}"><a href="{{route('questions.edit',$question->id)}}">{{$question->title}}</a></td>
 
                                         <td>{{$question->right_answer}}</td>
 

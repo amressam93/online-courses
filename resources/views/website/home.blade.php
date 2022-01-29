@@ -58,6 +58,10 @@
 
     @endsection
 
+    @section('footer')
+        @include('layouts.webiste.footers.footer')
+    @endsection
+
 @section('js')
 
     <script>

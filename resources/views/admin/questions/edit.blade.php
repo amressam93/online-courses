@@ -92,6 +92,26 @@
 
 
 
+                                <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-score">{{ __('Question Type') }}</label>
+
+
+                                    <select name="type" required class="form-control" id="input-score">
+
+                                        <option value="text"  {{($question->type == 'text') ? 'selected' : ''}} >text</option>
+                                        <option value="checkbox" {{($question->type == 'checkbox') ? 'selected' : ''}} >checkbox</option>
+
+                                    </select>
+
+
+                                    @if ($errors->has('score'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('score') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+
 
                                 <div class="form-group{{ $errors->has('quiz_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-quiz_id">{{ __('Quiz Name') }}</label>

@@ -49,7 +49,14 @@ class VideoController extends Controller
      */
     public function store(VideoRequest $request)
     {
-        $video = video::create($request->all());
+
+        $data = [
+            'title'     => $request->title,
+            'link'      => $this->get_video_id_from_url($request->link),
+            'course_id' => $request->course_id
+        ];
+
+        $video = video::create($data);
 
         if($video)
             return redirect()->route("videos.index")->withStatus(__('Video Successfuly Created'));
@@ -100,7 +107,13 @@ class VideoController extends Controller
      */
     public function update(VideoRequest $request, video $video)
     {
-        if($video->update($request->all()))
+        $data = [
+            'title'     => $request->title,
+            'link'      => $this->get_video_id_from_url($request->link),
+            'course_id' => $request->course_id
+        ];
+
+        if($video->update($data))
 
             return redirect()->route('videos.index')->withStatus(__('Video Successfuly Updated'));
 
@@ -126,6 +139,19 @@ class VideoController extends Controller
 
             return redirect()->route('videos.index')->withStatus(__('Video Successfuly Deleted'));
     }
+
+
+
+
+    private function get_video_id_from_url($youtube_url)
+    {
+        $url = $youtube_url;
+
+        parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
+
+        return $my_array_of_vars['v'];
+    }
+
 
 
 }

@@ -24,7 +24,9 @@
 
     <!--End Content -->
 
-    @include('layouts.webiste.footers.footer')
+{{--    @include('layouts.webiste.footers.footer')--}}
+
+    @yield('footer')
 
     @include('layouts.webiste.footers.scripts')
 

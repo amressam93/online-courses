@@ -36,6 +36,15 @@
                                     @endif
                                 </div>
 
+                                <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-description">{{ __('Course Description') }}</label>
+                                    <textarea  name="description" id="input-description" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter Description Course') }}" rows="3" required autofocus>{{ old('description') }}</textarea>
+                                    @if ($errors->has('description'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
 
 
@@ -83,6 +92,25 @@
                                     @if ($errors->has('track_id'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('track_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+
+                                <div class="form-group{{ $errors->has('level_id') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-level_id">{{ __('Course Level') }}</label>
+
+
+                                    <select name="level_id" required class="form-control" id="input-level_id">
+                                        @foreach(\App\CourseLevel::all() as $level)
+                                            <option value="{{$level->id}}">{{$level->name}}</option>
+                                        @endforeach
+                                    </select>
+
+
+                                    @if ($errors->has('level_id'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('level_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>

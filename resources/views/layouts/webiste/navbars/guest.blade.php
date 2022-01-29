@@ -1,7 +1,7 @@
 <!-- guest navbar login -->
 <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href=""><img src="{{URL::asset('website/assets/images/brand/logo/logo.svg')}}" alt=""/></a>
+        <a class="navbar-brand" href="{{url('/')}}"><img src="{{URL::asset('website/assets/images/brand/logo/LearnCode3.png')}}" alt=""/></a>
 
         <!-- Button -->
         <button
@@ -761,12 +761,12 @@
                             <hr class="mx-3" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="sign-in.html">
+                            <a class="dropdown-item" href="{{route('login')}}">
                                 Sign In
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="sign-up.html">
+                            <a class="dropdown-item" href="{{route('register')}}">
                                 Sign Up
                             </a>
                         </li>
@@ -879,19 +879,20 @@
                     </div>
                 </li>
             </ul>
-            <form class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
+            <form method="get" action="{{route('course_search')}}" class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
 				<span class="position-absolute ps-3 search-icon">
 					<i class="fe fe-search"></i>
 				</span>
                 <input
                     type="search"
+                    name="q"
                     class="form-control ps-6"
                     placeholder="Search Courses"
                 />
             </form>
             <div class="ms-auto mt-3 mt-lg-0">
-                <a href="#" class="btn btn-white shadow-sm me-1">Sign In</a>
-                <a href="#" class="btn btn-primary">Sign Up</a>
+                <a href="{{route('login')}}" class="btn btn-white shadow-sm me-1">Sign In</a>
+                <a href="{{route('register')}}" class="btn btn-primary">Sign Up</a>
             </div>
         </div>
     </div>

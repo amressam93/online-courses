@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\course;
+use App\CourseLevel;
 use App\photo;
 use App\Question;
 use App\Quiz;
@@ -40,6 +41,14 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(track::class, function (Faker $faker) {
     return [
+        'name' => $faker->unique()->word,
+    ];
+});
+
+
+
+$factory->define(CourseLevel::class, function (Faker $faker) {
+    return [
         'name' => $faker->word,
     ];
 });
@@ -48,17 +57,20 @@ $factory->define(track::class, function (Faker $faker) {
 
 
 $factory->define(course::class, function (Faker $faker) {
+
+    $title = $faker->paragraph(1);
+
+
     return [
-        'title'    => $faker->paragraph(1),
-        'status'   => $faker->randomElement([0,1]),
-        'link'     => $faker->url,
-        'track_id' => track::all()->random()->id,
+        'title'        => $title,
+        'description'  => $faker->paragraph(2),
+        'slug'         => strtolower(str_replace(' ','-',$title)),
+        'status'       => $faker->randomElement([0,1]),
+        'link'         => $faker->url,
+        'track_id'     => track::all()->random()->id,
+        'level_id'     => CourseLevel::all()->random()->id,
     ];
 });
-
-
-
-
 
 
 

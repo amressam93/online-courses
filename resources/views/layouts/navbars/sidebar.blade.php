@@ -157,6 +157,29 @@
                 </li>
 
 
+                <li class="nav-item">
+                    <a class="nav-link " href="#coursesLevel-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="courses-examples">
+                        <i class="fas fa-chart-line" style="color: #5e72e4;"></i>
+                        <span class="nav-link-text" style="color: #5e72e4;">{{ __('Course Levels') }}</span>
+                    </a>
+
+                    <div class="collapse" id="coursesLevel-examples">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('levels.create') }}">
+                                    {{ __('Create Level') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('levels.index')}}">
+                                    {{ __('All Levels') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
 
                 <li class="nav-item">
                     <a class="nav-link " href="#courses-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="courses-examples">

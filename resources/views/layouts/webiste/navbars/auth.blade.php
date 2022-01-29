@@ -1,7 +1,7 @@
 <!-- auth Navbar -->
 <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="index-2.html"><img src="{{URL::asset('website/assets/images/brand/logo/logo.svg')}}" alt=""/></a>
+        <a class="navbar-brand" href="{{url('/')}}"><img src="{{URL::asset('website/assets/images/brand/logo/LearnCode3.png')}}" alt=""/></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
 
@@ -91,9 +91,12 @@
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                         <li>
-                            <a class="dropdown-item" href="index-2.html">
+                            <a class="dropdown-item" href="javascript:void(0);" onclick="$('#logout-form').submit();">
                                 <i class="fe fe-power me-2"></i>Sign Out
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -974,15 +977,12 @@
                     </div>
                 </li>
             </ul>
-            <form class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
+            <form method="get" action="{{route('course_search')}}" class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
+
 				<span class="position-absolute ps-3 search-icon">
 					<i class="fe fe-search"></i>
 				</span>
-                <input
-                    type="search"
-                    class="form-control ps-6"
-                    placeholder="Search Courses"
-                />
+                <input type="search" name="q" class="form-control ps-6 search-form-courses" placeholder="Search Courses"/>
             </form>
             <ul class="navbar-nav navbar-right-wrap ms-auto d-none d-lg-block">
                 <li class="dropdown ms-2 d-inline-block">
@@ -1068,9 +1068,12 @@
                         <div class="dropdown-divider"></div>
                         <ul class="list-unstyled">
                             <li>
-                                <a class="dropdown-item" href="index-2.html">
+                                <a class="dropdown-item" href="javascript:void(0);" onclick="$('#logout-form').submit();">
                                     <i class="fe fe-power me-2"></i>Sign Out
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </div>

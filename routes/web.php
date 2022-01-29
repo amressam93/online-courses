@@ -14,18 +14,26 @@
 
 // User Routes
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
+Route::get('/','HomeController@index')->name('home');
 
 
 Auth::routes();
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/course/{slug}/{id}','CourseController@index')->name('single_course');
+
+Route::get('/lesson/{slug}/{courseId}','CourseController@courseLessons')->name('course_lessons')->middleware(['auth']);
+
+Route::get('/course/{slug}/quizzes/{quizName}','QuizController@index')->name('course_quizzes')->middleware(['auth']);
+
+Route::post('/course/{slug}/quizzes/{quizName}','QuizController@store')->name('course_quizzes')->middleware(['auth']);
+
+Route::get('/courses/search/','CourseSearchController@index')->name('course_search');
+
+Route::get('/courses/filter/','CourseSearchController@filter')->name('course_filter');
+
 
 
 // Admin Routes
@@ -45,6 +53,8 @@ Route::group(['middleware' => ['auth','Admin'] ], function () {
     Route::resource('admin/users', 'Admin\UserController', ['except' => ['show']]);
 
     Route::resource('admin/tracks', 'Admin\TrackController');
+
+    Route::resource('admin/levels', 'Admin\CourseLevelController');
 
     Route::resource('admin/track.course', 'Admin\TrackCourseController');
 

@@ -5,7 +5,7 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="{{URL::asset('website/assets/images/brand/logo/logo.svg')}}" alt="">
+                    <img src="{{URL::asset('website/assets/images/brand/logo/LearnCode3.png')}}" alt="">
                     <div class="mt-4">
                         <p>Geek is feature-rich components and beautifully Bootstrap UIKit for developers, built with bootstrap responsive framework.</p>
                         <!-- social media -->
@@ -58,16 +58,16 @@
         <div class="row align-items-center g-0 border-top py-2 mt-6">
             <!-- Desc -->
             <div class="col-lg-4 col-md-5 col-12">
-                <span>© 2021 Geeks-UI, Inc. All Rights Reserved</span>
+                <span>© {{date('Y')}} LearnCode. All Rights Reserved</span>
             </div>
 
             <!-- Links -->
             <div class="col-12 col-md-7 col-lg-8 d-md-flex justify-content-end">
                 <nav class="nav nav-footer">
-                    <a class="nav-link ps-0" href="#">Privacy Policy</a>
-                    <a class="nav-link px-2 px-md-3" href="#">Cookie Notice  </a>
-                    <a class="nav-link d-none d-lg-block" href="#">Do Not Sell My Personal Information </a>
-                    <a class="nav-link" href="#">Terms of Use</a>
+                    <a class="nav-link active ps-0" href="#">Privacy</a>
+                    <a class="nav-link" href="#">Terms </a>
+                    <a class="nav-link" href="#">Feedback</a>
+                    <a class="nav-link" href="#">Support</a>
                 </nav>
             </div>
         </div>

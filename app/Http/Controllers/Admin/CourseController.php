@@ -56,14 +56,28 @@ class CourseController extends Controller
     {
         $rules = [
             'title' => 'required|min:20|max:100',
+            'description' => 'required',
             'status' => 'required|integer|in:0,1',
             'link' => 'required|url',
-            'track_id' => 'required|integer'
+            'track_id' => 'required|integer',
+            'level_id' => 'required|integer',
         ];
 
         $this->validate($request,$rules);
 
-        $course = course::create($request->all());
+        $data = [
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'slug'        => $this->Process_Slug($request->title),
+            'status'      => $request->status,
+            'link'        => $request->link,
+            'track_id'    => $request->track_id,
+            'level_id'    => $request->level_id
+        ];
+
+
+        $course = course::create($data);
 
         if($course)
         {
@@ -97,6 +111,43 @@ class CourseController extends Controller
 
 
 
+    private function Process_Slug($name) {
+
+        $space = array(' ');
+        $dash  = array("-");
+
+        $value     = preg_replace('/[^\x{0600}-\x{06FF}a-zA-Z0-9]/u', ' ', $name);
+        $url1  = str_replace($space, $dash, $value);
+        $url2 = preg_replace('#-+#','-',$url1);
+
+        if($this->isArabic($url2) == false) {
+            $url2  = strtolower($url2);
+        }
+
+        $first_ch = $url2[0];
+        $last_ch = substr($url2, -1);
+
+        if($first_ch == '-') {
+            $url2 = substr_replace($url2, "", 0, 1);
+        }
+
+        if($last_ch == '-') {
+            $url2 = substr_replace($url2, "", strlen($url2)-1, strlen($url2));
+        }
+
+        return $url2;
+    }
+
+
+    private function isArabic($string) {
+
+        if(preg_match('/\p{Arabic}/u', $string)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
     /**
      * Display the specified resource.
@@ -137,14 +188,30 @@ class CourseController extends Controller
     {
         $rules = [
             'title'    => 'required|min:20|max:100',
+            'description' => 'required',
             'status'   => 'required|integer|in:0,1',
             'link'     => 'required|url',
-            'track_id' => 'required|integer'
+            'track_id' => 'required|integer',
+            'level_id' => 'required|integer',
         ];
 
         $this->validate($request,$rules);
 
-        $course->update($request->all());
+
+        $data = [
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'slug'        => $this->Process_Slug($request->title),
+            'status'      => $request->status,
+            'link'        => $request->link,
+            'track_id'    => $request->track_id,
+            'level_id'    => $request->level_id
+        ];
+
+
+
+        $course->update($data);
 
         if($file = $request->file('image'))
         {

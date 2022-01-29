@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <iframe width="700" height="315" src="{{$video->link}}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        <iframe width="700" height="315" src="https://www.youtube.com/embed/{{$video->link}}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

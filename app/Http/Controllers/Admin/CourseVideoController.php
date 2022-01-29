@@ -40,7 +40,14 @@ class CourseVideoController extends Controller
      */
     public function store(VideoRequest $request,course $course)
     {
-        $video = video::create($request->all());
+
+        $data = [
+            'title'     => $request->title,
+            'link'      => $this->get_video_id_from_url($request->link),
+            'course_id' => $request->course_id
+        ];
+
+        $video = video::create($data);
 
         if($video)
             return redirect()->route("courses.show",$course->id)->withStatus(__('Video Successfuly Created'));
@@ -95,4 +102,19 @@ class CourseVideoController extends Controller
     {
         //
     }
+
+
+
+
+
+    private function get_video_id_from_url($youtube_url)
+    {
+        $url = $youtube_url;
+
+        parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
+
+        return $my_array_of_vars['v'];
+    }
+
+
 }
