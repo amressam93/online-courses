@@ -34,7 +34,11 @@ Route::get('/courses/search/','CourseSearchController@index')->name('course_sear
 
 Route::get('/courses/filter/','CourseSearchController@filter')->name('course_filter');
 
+Route::get('/tracks/{name}','TrackController@index')->name('track_courses');
 
+Route::post('/tracks/load_data/{track_name}', 'TrackController@load_data')->name('tracks.load_data');
+
+Route::post('/tracks/filter/{track_name}', 'TrackController@filter')->name('tracks.filter');
 
 // Admin Routes
 

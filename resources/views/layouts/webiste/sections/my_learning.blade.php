@@ -19,7 +19,7 @@
                     <div class="item">
                         <!-- Card -->
                         <div class="card  mb-4 card-hover equal_height_slider">
-                            <a href="{{route('single_course',['slug' => $userCourse->slug, 'id' => $userCourse->id])}}" class="card-img-top equal_height_slider">
+                            <a href="{{route('single_course',['slug' => $userCourse->slug, 'id' => $userCourse->id])}}" class="card-img-top">
                                 @if($userCourse->photo)
                                     <img src="/images/{{$userCourse->photo->filename}}" alt="" class="card-img-top rounded-top-md">
                                 @else
@@ -31,6 +31,8 @@
                                 <h4 class="mb-2 text-truncate-line-2 equal_height_slider">
                                     <a href="{{route('single_course',['slug' => $userCourse->slug, 'id' => $userCourse->id])}}" class="text-inherit">{{$userCourse->title}}</a>
                                 </h4>
+                                <p class="mb-2 fs-6"><strong class="badge bg-secondary">Track: </strong> <a href="/tracks/{{$userCourse->track->name}}" style="color:#a8a3b9"> {{$userCourse->track->name}} </a></p>
+
                                 <!-- List -->
                                 <ul class="mb-3 list-inline">
                                     <li class="list-inline-item"><i class="far fa-clock me-1"></i>2h 30m</li>

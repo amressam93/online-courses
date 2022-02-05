@@ -14,7 +14,7 @@
                         <div class="d-flex">
                             <div class="ms-3">
                                 <h4 class="mb-1">
-                                    <a href="course-path-single.html" class="text-inherit">
+                                    <a href="{{route('track_courses',$track->name)}}" class="text-inherit">
                                         {{$track->name}}
                                     </a>
                                 </h4>

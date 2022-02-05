@@ -25,8 +25,14 @@
 <link href="{{URL::asset('website/assets/libs/tippy.js/dist/tippy.css')}}" rel="stylesheet">
 <link href="{{URL::asset('website/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet">
 
+
+
+
 <!-- Theme CSS -->
 <link rel="stylesheet" href="{{URL::asset('website/assets/css/theme.min.css')}}">
+
+<!-- Bootstrap Multi Select CSS -->
+{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">--}}
 
 @yield('css')
 

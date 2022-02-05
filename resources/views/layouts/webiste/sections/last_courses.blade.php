@@ -32,6 +32,8 @@
                                 <h4 class="mb-2 text-truncate-line-2 equal_height_slider">
                                     <a href="{{route('single_course',['slug' => $course->slug , 'id' => $course->id])}}" class="text-inherit">{{$course->title}}</a>
                                 </h4>
+
+                                <p class="mb-2 fs-6"><strong class="badge bg-secondary">Track: </strong> <a href="/tracks/{{$course->track->name}}" style="color:#a8a3b9"> {{$course->track->name}} </a></p>
                                 <!-- List -->
                                 <ul class="mb-3 list-inline">
                                     <li class="list-inline-item"><i class="far fa-clock me-1"></i>3h 56m</li>
