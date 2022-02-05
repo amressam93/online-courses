@@ -24,7 +24,7 @@ class TrackController extends Controller
         }
 
     }
-    
+
     /**
      * Load data Courses Four Records By Request.
      * @param Request $request

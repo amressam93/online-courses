@@ -35,28 +35,44 @@ class HomeController extends Controller
         $countOfUsers = User::where('admin',0)->count();
         // get count of track
         $countOfTrack = track::count();
-        // user courses
-        $userCourses = User::findorfail(1)->courses;
+
         //tracks with courses
         $tracks = track::with('courses')->orderBy('id','desc')->get();
         // get tracks with name and id
         $tracksname = track::all()->pluck('name','id');
+
         // get famous tracks ids
         $famous_tracks_ids = course::pluck('track_id')->countBy()->sort()->reverse()->keys()->take(10);
 
         // get famous tracks including largest number of courses inside track.
         $famous_tracks = track::withCount('courses')->whereIn('id',$famous_tracks_ids)->orderBy('courses_count','desc')->get();
 
-        // get all courses where user enrolled in this courses
-        $user_course_ids = User::findorfail(1)->courses()->pluck('id');    // 38,39,48
+        if(Auth::check())
+        {
+            $auth_user = auth()->user();
 
-        // get all tracks where user enrolled in this tracks
-        $user_tracks_ids = User::findorfail(1)->tracks()->pluck('id');   // 12,15,1
+            // user courses
+            $userCourses = $auth_user->courses;
 
-        // recommended courses
-        $recommended_courses = course::whereIn('track_id',$user_tracks_ids)->whereNotIn('id',$user_course_ids)->get();
+            // get all courses where user enrolled in this courses
+            $user_course_ids = $auth_user->courses()->pluck('id');    // 38,39,48
 
-        return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','userCourses','tracks','tracksname','famous_tracks','recommended_courses'));
+            // get all tracks where user enrolled in this tracks
+            $user_tracks_ids = $auth_user->tracks()->pluck('id');   // 12,15,1
+
+            // recommended courses
+            $recommended_courses = course::whereIn('track_id',$user_tracks_ids)->whereNotIn('id',$user_course_ids)->get();
+
+
+            return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','userCourses','tracks','tracksname','famous_tracks','recommended_courses'));
+        }
+
+        else
+        {
+            return view('website.home',compact('countOfCourses','countOfFreeCourses','countOfUsers','countOfTrack','tracks','tracksname','famous_tracks'));
+        }
+
+
     }
 
 

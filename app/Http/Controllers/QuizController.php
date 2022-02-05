@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
+
     public function index($courseSlug,$quizName)
     {
 
@@ -42,7 +43,6 @@ class QuizController extends Controller
 
 
     }
-
 
     public function store($courseSlug,$quizName,Request $request)
     {
@@ -100,7 +100,5 @@ class QuizController extends Controller
 
 
     }
-
-
 
 }

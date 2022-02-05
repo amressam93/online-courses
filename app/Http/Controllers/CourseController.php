@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
 
+
     public function index($slug,$id)
     {
         $course = course::where('slug',$slug)->first();
@@ -17,7 +18,6 @@ class CourseController extends Controller
         //return $course->videos->first()->link;die();
 
         return view('website.course',compact('course'));
-
     }
 
 
