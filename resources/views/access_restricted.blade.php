@@ -15,7 +15,7 @@
         <div class="row">
             <div class="offset-xl-1 col-xl-2 col-lg-12 col-md-12 col-12">
                 <div class="mt-4">
-                    <a href="../index-2.html"><img src="{{URL::asset('website/assets/images/brand/logo/LearnCode3.png')}}" alt=""></a>
+                    <a href="{{url('/')}}"><img src="{{URL::asset('website/assets/images/brand/logo/LearnCode3.png')}}" alt="logo"></a>
                 </div>
             </div>
         </div>
