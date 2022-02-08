@@ -86,6 +86,7 @@
                     </li>
                 @endforeach
 
+                @if(count($course->quizzes) > 0)
 
                 <li class="list-group-item" style="margin-bottom:150px">
                     <!-- Toggle -->
@@ -127,6 +128,7 @@
                     @endif
                 </li>
 
+                @endif
 
             @else
                 <div class="alert alert-danger">This Course Does Not Include Any Videos.</div>

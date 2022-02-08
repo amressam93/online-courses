@@ -38,55 +38,28 @@
                     </div>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
-                        <li class="dropdown-submenu">
-                            <a
-                                class="dropdown-item dropdown-list-group-item dropdown-toggle"
-                                href="#"
-                            >
-                                <i class="fe fe-circle me-2"></i>Status
+                        @if(auth()->user()->admin == 0)
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user me-2"></i>Profile
                             </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="badge-dot bg-success me-2"></span>Online
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="badge-dot bg-secondary me-2"></span>Offline
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="badge-dot bg-warning me-2"></span>Away
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="badge-dot bg-danger me-2"></span>Busy
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="pages/profile-edit.html">
-                                <i class="fe fe-user me-2"></i>Profile
+                            <a class="dropdown-item" href="{{route('my-courses')}}">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>My Courses
                             </a>
                         </li>
+
+                        @elseif(auth()->user()->admin == 1)
+
                         <li>
-                            <a
-                                class="dropdown-item"
-                                href="pages/student-subscriptions.html"
-                            >
-                                <i class="fe fe-star me-2"></i>Subscription
+                            <a class="dropdown-item" href="{{url('/admin/dashboard')}}">
+                                <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
                             </a>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="fe fe-settings me-2"></i>Settings
-                            </a>
-                        </li>
+
+                        @endif
                     </ul>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
@@ -1013,57 +986,29 @@
                         </div>
                         <div class="dropdown-divider"></div>
                         <ul class="list-unstyled">
-                            <li class="dropdown-submenu dropstart-lg">
-                                <a
-                                    class="dropdown-item dropdown-list-group-item dropdown-toggle"
-                                    href="#"
-                                >
-                                    <i class="fe fe-circle me-2"></i>Status
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="badge-dot bg-success me-2"></span>Online
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="badge-dot bg-secondary me-2"></span>Offline
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="badge-dot bg-warning me-2"></span>Away
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="badge-dot bg-danger me-2"></span>Busy
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            @if(auth()->user()->admin == 0)
                             <li>
                                 <a
-                                    class="dropdown-item"
-                                    href="pages/profile-edit.html"
-                                >
-                                    <i class="fe fe-user me-2"></i>Profile
+                                    class="dropdown-item" href="#">
+                                    <i class="fas fa-user me-2"></i>Profile
                                 </a>
                             </li>
+
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="pages/student-subscriptions.html"
-                                >
-                                    <i class="fe fe-star me-2"></i>Subscription
+                                <a class="dropdown-item" href="{{route('my-courses')}}">
+                                    <i class="fas fa-chalkboard-teacher me-2"></i>My Courses
                                 </a>
                             </li>
+
+                            @elseif(auth()->user()->admin == 1)
+
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fe fe-settings me-2"></i>Settings
+                                <a class="dropdown-item" href="{{url('/admin/dashboard')}}">
+                                    <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
                                 </a>
                             </li>
+
+                            @endif
                         </ul>
                         <div class="dropdown-divider"></div>
                         <ul class="list-unstyled">

@@ -186,6 +186,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, course $course)
     {
+
+
         $rules = [
             'title'    => 'required|min:20|max:100',
             'description' => 'required',

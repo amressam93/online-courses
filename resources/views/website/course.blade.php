@@ -506,15 +506,51 @@
                         <!-- Card body -->
                         <div class="card-body">
                             <!-- Price single page -->
+                            @if(\Auth::check())
+
                             <div class="mb-3">
+
+                            @if(!in_array($course->id,auth()->user()->courses->pluck('id')->toArray()))
+
                                 @if($course->status == 0)
                                     <h1><span class="fw-bold badge bg-success me-4">Free</span></h1>
                                 @else
                                     <h1><span class="fw-bold badge bg-danger me-4">Paid</span></h1>
                                 @endif
+
+                            @endif
+
                             </div>
+
+                            @else
+                                @if($course->status == 0)
+                                    <h1><span class="fw-bold badge bg-success me-4">Free</span></h1>
+                                @else
+                                    <h1><span class="fw-bold badge bg-danger me-4">Paid</span></h1>
+                                @endif
+
+                            @endif
+
+                            @include('custom-flash-message')
+
                             <div class="d-grid">
-                                <a href="#" class="btn btn-primary mb-2  ">Enroll Now</a>
+                               @if(\Auth::check())
+                                    @if(in_array($course->id,auth()->user()->courses->pluck('id')->toArray()))
+                                       <a href="{{route('course_lessons',['slug' => $course->slug , 'courseId' => $course->id])}}" class="btn btn-dark mb-2">Go to course</a>
+                                    @else
+                                        <form method="POST" action="{{route('enroll_course',['slug' => $course->slug,'id' => $course->id])}}">
+                                            @csrf
+                                            <input type="submit" class="btn btn-primary mb-2 col-12" name="enroll" value="Enroll Now">
+                                        </form>
+                                    @endif
+                                @else
+                                    <form method="POST" action="{{route('enroll_course',['slug' => $course->slug,'id' => $course->id])}}">
+                                        @csrf
+                                        <input type="submit" class="btn btn-primary mb-2 col-12" name="enroll" value="Enroll Now">
+                                    </form>
+                                @endif
+
+{{--                                <a href="#" class="btn btn-primary mb-2  ">Enroll Now</a>--}}
                             </div>
                         </div>
                     </div>

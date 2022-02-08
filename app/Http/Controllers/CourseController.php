@@ -6,6 +6,7 @@ use Alaouy\Youtube\Facades\Youtube;
 use App\course;
 use DateInterval;
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 
 class CourseController extends Controller
 {
@@ -17,7 +18,20 @@ class CourseController extends Controller
 
         //return $course->videos->first()->link;die();
 
-        return view('website.course',compact('course'));
+        if($course)
+            return view('website.course',compact('course'));
+        return abort('404');
+    }
+
+
+    public function enroll_course($slug,$id)
+    {
+        $course = course::where('slug',$slug)->where('id',$id)->first();
+        $auth_user = auth()->user();
+
+        $auth_user->courses()->attach($course);
+
+        return redirect()->route('single_course',['slug' => $course->slug,'id' => $course->id])->with('success-enroll',new HtmlString('You have Successfully enrolled for <strong>' . $course->title . '</strong>'.'Course'));
     }
 
 
@@ -26,6 +40,7 @@ class CourseController extends Controller
     {
         $user = auth()->user();
         $quizzes_ids = [];
+
        foreach ($user->quizzes as $quiz)
        {
            $quizzes_ids[] = $quiz->id;

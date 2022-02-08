@@ -24,11 +24,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/course/{slug}/{id}','CourseController@index')->name('single_course');
 
-Route::get('/lesson/{slug}/{courseId}','CourseController@courseLessons')->name('course_lessons')->middleware(['auth']);
+Route::post('/course/{slug}/{id}','CourseController@enroll_course')->name('enroll_course')->middleware(['auth']);;
 
-Route::get('/course/{slug}/quizzes/{quizName}','QuizController@index')->name('course_quizzes')->middleware(['auth']);
+Route::get('/lesson/{slug}/{courseId}','CourseController@courseLessons')->name('course_lessons')->middleware(['auth','AccessCourseLessons']);  // here
 
-Route::post('/course/{slug}/quizzes/{quizName}','QuizController@store')->name('course_quizzes')->middleware(['auth']);
+Route::get('/course/{slug}/quizzes/{quizName}','QuizController@index')->name('course_quizzes')->middleware(['auth']); // here
+
+Route::post('/course/{slug}/quizzes/{quizName}','QuizController@store')->name('course_quizzes')->middleware(['auth']);  // here
 
 Route::get('/courses/search/','CourseSearchController@index')->name('course_search');
 
@@ -39,6 +41,11 @@ Route::get('/tracks/{name}','TrackController@index')->name('track_courses');
 Route::post('/tracks/load_data/{track_name}', 'TrackController@load_data')->name('tracks.load_data');
 
 Route::post('/tracks/filter/{track_name}', 'TrackController@filter')->name('tracks.filter');
+
+Route::get('/my-courses','MyCoursesController@index')->name('my-courses');
+
+Route::get('/profile','ProfileController@index')->name('profile');
+
 
 // Admin Routes
 

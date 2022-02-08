@@ -104,7 +104,7 @@
                                     <label class="form-control-label" for="input-track_id">{{ __('Course Level') }}</label>
 
 
-                                    <select name="track_id" required class="form-control" id="input-track_id">
+                                    <select name="level_id" required class="form-control" id="input-track_id">
                                         @foreach(\App\CourseLevel::all() as $level)
                                             <option value="{{$level->id}}" {{($level->id == $course->level_id) ? 'selected' : ''}} >{{$level->name}}</option>
                                         @endforeach
