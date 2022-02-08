@@ -44,7 +44,7 @@ Route::post('/tracks/filter/{track_name}', 'TrackController@filter')->name('trac
 
 Route::get('/my-courses','MyCoursesController@index')->name('my-courses');
 
-Route::get('/profile','ProfileController@index')->name('profile');
+Route::get('/profile','ProfileController@index')->name('profile')->middleware(['auth','Student']);
 
 
 // Admin Routes
