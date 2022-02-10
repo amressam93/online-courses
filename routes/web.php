@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/course/{slug}/{id}','CourseController@index')->name('single_course');
 
-Route::post('/course/{slug}/{id}','CourseController@enroll_course')->name('enroll_course')->middleware(['auth']);;
+Route::post('/course/{slug}/{id}','CourseController@enroll_course')->name('enroll_course')->middleware(['auth']);
 
 Route::get('/lesson/{slug}/{courseId}','CourseController@courseLessons')->name('course_lessons')->middleware(['auth','AccessCourseLessons']);  // here
 
@@ -46,6 +46,9 @@ Route::get('/my-courses','MyCoursesController@index')->name('my-courses');
 
 Route::get('/profile','ProfileController@index')->name('profile')->middleware(['auth','Student']);
 
+Route::post('/profile','ProfileController@update_image')->name('update-profile-image')->middleware(['auth','Student']);
+
+Route::delete('/profile-image','ProfileController@delete_image')->name('delete-profile-image')->middleware(['auth','Student']);
 
 // Admin Routes
 

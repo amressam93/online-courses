@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div>
-                            <a href="#" class="btn btn-primary btn-sm d-none d-md-block">Account Setting</a>
+                            <a href="{{route('profile')}}" class="btn btn-primary btn-sm d-none d-md-block">Account Setting</a>
                         </div>
                     </div>
                 </div>

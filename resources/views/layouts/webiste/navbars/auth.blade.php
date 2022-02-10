@@ -40,7 +40,7 @@
                     <ul class="list-unstyled">
                         @if(auth()->user()->admin == 0)
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('profile')}}">
                                 <i class="fas fa-user me-2"></i>Profile
                             </a>
                         </li>
@@ -989,7 +989,7 @@
                             @if(auth()->user()->admin == 0)
                             <li>
                                 <a
-                                    class="dropdown-item" href="#">
+                                    class="dropdown-item" href="{{route('profile')}}">
                                     <i class="fas fa-user me-2"></i>Profile
                                 </a>
                             </li>
