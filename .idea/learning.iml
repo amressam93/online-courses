@@ -113,6 +113,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/alaouy/youtube" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/protonemedia/laravel-cross-eloquent-search" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/schuppo/password-strength" />
     </content>
     <content url="file://$MODULE_DIR$/../livewire-Crud" />
     <content url="file://$MODULE_DIR$/../livewire-articles-project" />

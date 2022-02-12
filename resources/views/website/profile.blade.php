@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="lh-1">
-                                <h2 class="mb-0">
+                                <h2 class="mb-0" id="profile_name_user">
                                     {{$user->name}}
                                 </h2>
 
@@ -194,11 +194,14 @@
                             </div>
                             <hr class="my-5" />
                             <div>
+
+                                @include('flash-message')
+
                                 <p class="mb-2">
                                     Your Score (<strong style="color:#754ffe">{{$user->score}}</strong> Points)
                                 </p>
 
-                                <p class="mb-4">
+                                <p class="mb-4" id="profile_email_user">
                                     Your Email Address (<strong>{{$user->email}}</strong>) is <span class="badge bg-{{ $user->email_verified_at ? 'success' : 'danger' }} me-4">{{$user->email_verified_at ? 'Verified' : 'Unverified'}}</span>
                                 </p>
 
@@ -208,24 +211,38 @@
                                     Edit your personal information and address.
                                 </p>
 
+                                <p class="mb-2" style="color:green;font-weight:bold" id="profile_info_success_message"></p>
+
+                                <div id="validation-errors"></div>
+
                                 <!-- Form -->
-                                <form class="row" method="POST" action="/profile">
+                                <form class="row" method="POST" action="/profile" id="profile_form">
+                                    @csrf
                                     <!--  name -->
-                                    <div class="mb-3 col-12 col-md-6">
+                                    <div class="mb-3 col-12 col-md-6 ">
                                         <label class="form-label" for="name">Name</label>
-                                        <input type="text" id="name" class="form-control" value="{{$user->name}}" placeholder="Name" required />
+                                        <input type="text" id="name" name="name" class="form-control" value="{{$user->name}}" placeholder="Name"   />
+
+                                            <span style="color:red" id="name_validation"></span>
                                     </div>
 
                                     <!-- Address -->
                                     <div class="mb-3 col-12 col-md-6">
                                         <label class="form-label" for="email">Email Address</label>
-                                        <input type="email" name="email" id="email" class="form-control" value="{{$user->email}}" placeholder="Email Address" required />
+                                        <input type="email" name="email" id="email" class="form-control" value="{{$user->email}}" placeholder="Email Address"   />
+
+                                        <span style="color:red" id="email_validation"></span>
                                     </div>
 
                                     <!-- password  -->
-                                    <div class="mb-3 col-12 col-md-6 password-field">
-                                        <label class="form-label" for="newpassword">New Password</label>
-                                        <input id="newpassword" type="password" name="password" class="form-control mb-2" placeholder="Password" required />
+                                    <div class="mb-3 col-12 col-md-6 password-field" id="new_password">
+                                        <label class="form-label" for="password">New Password</label>
+                                        <input id="password" type="password" name="password" class="form-control mb-2" placeholder="Password"  />
+
+                                        <span style="color:red" id="password_validation"></span>
+
+                                        <br>
+                                        <em class="help-block">A minimum 6 characters password contains a combination of <strong>uppercase and lowercase letter</strong> and <strong>number</strong>.</em>
                                         <div class="row align-items-center g-0">
                                             <div class="col-6">
                                               <span data-bs-toggle="tooltip" data-placement="right" title="Test it by typing a password in the field below. To reach full strength, use at least 6 characters, a capital letter and a digit, e.g. 'Test01'">
@@ -239,8 +256,9 @@
 
                                     <!-- password  -->
                                     <div class="mb-3 col-12 col-md-6">
-                                        <label class="form-label" for="confirmPassword">Confirm Password</label>
-                                        <input type="password" name="confirmpassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required />
+                                        <label class="form-label" for="password_confirmation">Confirm Password</label>
+                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password"  />
+                                        <span style="color:red" id="password_confirmation_validation"></span>
                                     </div>
 
                                     <div class="col-12">
@@ -331,6 +349,7 @@
 
                 $("#profile_image_success_message").text(data.message);
                 setTimeout(function(){$("#profile_image_success_message").hide();},10000);
+                $("#profile_image_success_message").show();
                 $(".uploaded_image").html(data.uploaded_image);
                 $(".uploaded_image_page_header").html(data.uploaded_image_page_header);
                 $('#upload_profile_image_btn').html("Upload");
@@ -346,6 +365,7 @@
         })
 
     });
+
 
 
 
@@ -367,7 +387,8 @@
 
                         $("#profile_image_success_message").text(data.message);
                         setTimeout(function(){$("#profile_image_success_message").hide();},5000);
-                        window.setTimeout(function(){location.reload()},1000)
+                        window.setTimeout(function(){location.reload()},1000);
+                        $("#profile_image_success_message").show();
 
                     }
                 });
@@ -376,6 +397,159 @@
     }
 
 
+
+    // user info submit form ajax
+    $("#profile_form").on('submit',function(e){
+
+        e.preventDefault();
+
+        $.ajax({
+
+            url: "{{route('update-profile-image')}}",
+            type: "POST",
+            data: new FormData(this),
+            dataType: "JSON",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data){
+
+
+                // empty password input
+                $('#password').val('');
+
+                // empty confirmation password input
+                $('#password_confirmation').val('');
+
+                // update email profile user.
+                $('#profile_email_user').html('');
+                $('#profile_email_user').append('Your Email Address (<strong>'+`${data.email}`+'</strong>) is <span class="badge bg-{{ $user->email_verified_at ? "success" : "danger" }} me-4">{{$user->email_verified_at ? "Verified" : "Unverified"}}</span>');
+
+
+                // update name profile user.
+                $('#profile_name_user').text('');
+                $('#profile_name_user').text(data.name);
+
+
+
+                // empty validation message.
+                $('#name_validation').html('');
+
+                $('#email_validation').html('');
+
+                $('#password_validation').html('');
+
+                $('#password_confirmation_validation').html('');
+
+
+                // empty progress bar password Strengh after Request Ajax.
+                $("#new_password").removeClass("password-field");
+                $("#new_password").addClass("password-field");
+
+
+
+                // show success message.
+                $("#profile_info_success_message").text(data.message);
+                setTimeout(function(){$("#profile_info_success_message").hide();},10000);
+                $("#profile_info_success_message").show();
+                //window.location.reload();
+
+            },
+            error: function (xhr) {
+                $('#validation-errors').html('');
+
+                $.each(xhr.responseJSON.errors, function(key,value) {
+                   // $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div>');
+
+
+                    // full validation message.
+
+                    // Name validation
+                    if(xhr.responseJSON.errors.name)
+                    {
+                        $('#name_validation').html('');
+
+                       // $('#name_validation').append('<strong>'+ xhr.responseJSON.errors.name + '</strong>');
+
+                        xhr.responseJSON.errors.name.forEach((q) =>{            // foreach for email errors
+                            $('#name_validation')
+                                .append('<strong>'+ q +'<br>'+ '</strong>');
+                        })
+                    }
+                    else
+                    {
+                        $('#name_validation').html('');
+                    }
+
+                    // email validation
+                    if(xhr.responseJSON.errors.email)
+                    {
+                        $('#email_validation').html('');
+
+                       // $('#email_validation').append('<strong>'+ xhr.responseJSON.errors.email + '</strong>');
+
+                        xhr.responseJSON.errors.email.forEach((q) =>{            // foreach for email errors
+                            $('#email_validation')
+                                .append('<strong>'+ q +'<br>'+ '</strong>');
+                        })
+                    }
+
+                    else
+                    {
+                        $('#email_validation').html('');
+                    }
+
+                    // password validation
+                    if(xhr.responseJSON.errors.password)
+                    {
+
+                        $('#password_validation').html('');
+
+                        //$('#password_validation').append('<strong>'+ xhr.responseJSON.errors.password + '</strong>');
+
+                        xhr.responseJSON.errors.password.forEach((q) =>{            // foreach for password errors
+                            $('#password_validation')
+                                .append('<strong>'+ q +'<br>'+ '</strong>');
+                        })
+
+                    }
+
+                    else
+                    {
+                        $('#password_validation').html('');
+                    }
+
+
+                    // password confirmation validation
+                    if(xhr.responseJSON.errors.password_confirmation)
+                    {
+
+                        $('#password_confirmation_validation').html('');
+
+                        //$('#password_confirmation_validation').append('<strong>'+ xhr.responseJSON.errors.password + '</strong>');
+
+                        xhr.responseJSON.errors.password_confirmation.forEach((q) =>{            // foreach for password errors
+                            $('#password_confirmation_validation')
+                                .append('<strong>'+ q +'<br>'+ '</strong>');
+                        })
+
+                    }
+
+                    else
+                    {
+                        $('#password_confirmation_validation').html('');
+                    }
+
+
+
+                });
+            }
+
+
+
+        })
+
+    });
 
 
 
