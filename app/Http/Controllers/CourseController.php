@@ -27,7 +27,12 @@ class CourseController extends Controller
     public function enroll_course($slug,$id)
     {
         $course = course::where('slug',$slug)->where('id',$id)->first();
+
         $auth_user = auth()->user();
+
+        $track = $course->track;
+
+        $auth_user->tracks()->syncWithoutDetaching([$track->id]);
 
         $auth_user->courses()->attach($course);
 

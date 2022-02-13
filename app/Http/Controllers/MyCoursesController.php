@@ -19,7 +19,9 @@ class MyCoursesController extends Controller
 
             $user_courses = $auth_user->courses;
 
-            return view('website.my_courses',compact('user_courses'));
+            $tracks = $auth_user->tracks;
+
+            return view('website.my_courses',compact('user_courses','tracks'));
     }
 
 

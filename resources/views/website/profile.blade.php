@@ -79,19 +79,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('my-courses')}}"><i class="fe fe-calendar nav-icon"></i>My Courses</a>
                                     </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
-                                            Info</a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
-                                    </li>
+
                                 </ul>
                                 <span class="navbar-header">Account Settings</span>
                                 <!-- List -->
@@ -100,32 +88,13 @@
                                     <li class="nav-item {{ request()->is('profile') ? 'active' : '' }}">
                                         <a class="nav-link" href="{{route('profile')}}"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
                                     </li>
+
                                     <!-- Nav item -->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
+                                        <a class="nav-link" href="#"><i class="fe fe-refresh-cw nav-icon"></i>Social
                                             Profiles</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
-                                            Privacy</a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
-                                            Profile</a>
-                                    </li>
-                                    <!-- Nav item -->
-                                    <li class="nav-item">
-                                        <a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
-                                    </li>
+
                                     <!-- Nav item -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="javascript:void(0);" onclick="$('#logout-form').submit();">
@@ -196,6 +165,10 @@
                             <div>
 
                                 @include('flash-message')
+
+                                <p class="mb-2">
+                                    You're a Member Since <strong>{{$user->created_at->diffForHumans()}}</strong>
+                                </p>
 
                                 <p class="mb-2">
                                     Your Score (<strong style="color:#754ffe">{{$user->score}}</strong> Points)
