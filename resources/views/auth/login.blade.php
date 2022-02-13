@@ -23,7 +23,7 @@
                     <!-- Card body -->
                     <div class="card-body p-6">
                         <div class="mb-4">
-                            <a href="{{url('/')}}"><img src="{{URL::asset('website/assets/images/brand/logo/logo-icon.svg')}}" class="mb-4" alt=""></a>
+                            <a href="{{url('/')}}"><img src="{{URL::asset('website/assets/images/brand/logo/logo-icon.svg')}}" class="mb-4" alt="logo"></a>
                             <h1 class="mb-1 fw-bold">Sign in</h1>
                             <span>Don’t have an account? <a href="{{ route('register') }}" class="ms-1">Sign up</a></span>
                         </div>
