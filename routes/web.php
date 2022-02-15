@@ -36,6 +36,8 @@ Route::get('/courses/search/','CourseSearchController@index')->name('course_sear
 
 Route::get('/courses/filter/','CourseSearchController@filter')->name('course_filter');
 
+Route::get('/tracks','TrackController@all_tracks')->name('all_tracks');
+
 Route::get('/tracks/{name}','TrackController@index')->name('track_courses');
 
 Route::post('/tracks/load_data/{track_name}', 'TrackController@load_data')->name('tracks.load_data');
@@ -49,6 +51,9 @@ Route::get('/profile','ProfileController@index')->name('profile')->middleware(['
 Route::post('/profile','ProfileController@update_image')->name('update-profile-image')->middleware(['auth','Student']);
 
 Route::delete('/profile-image','ProfileController@delete_image')->name('delete-profile-image')->middleware(['auth','Student']);
+
+Route::get('/all-courses','allCoursesController@index')->name('all_courses');
+
 
 // Admin Routes
 

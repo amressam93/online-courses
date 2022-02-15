@@ -229,9 +229,19 @@ class TrackController extends Controller
 
 
 
+    }
 
 
+
+
+
+    public function all_tracks()
+    {
+        $tracks = track::with('courses')->orderBy('id','desc')->get();
+
+        return view('website.all_tracks',compact('tracks'));
 
     }
+
 
 }
