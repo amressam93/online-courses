@@ -54,6 +54,9 @@ Route::delete('/profile-image','ProfileController@delete_image')->name('delete-p
 
 Route::get('/all-courses','allCoursesController@index')->name('all_courses');
 
+Route::get('/load-more-all-courses','allCoursesController@load_more_data')->name('load_more_all_courses');
+
+Route::get('/all-courses-filter','allCoursesController@filter')->name('all-courses-filter');
 
 // Admin Routes
 

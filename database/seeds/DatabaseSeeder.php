@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $users =  factory('App\User',25)->create();
 
         // old 20
-        $tracks = factory('App\track',20)->create();
+        $tracks = factory('App\track',5)->create();
 
         $levels = factory('App\CourseLevel',3)->create();
 
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // old 50
-        $courses = factory('App\course',500)->create();
+        $courses = factory('App\course',50)->create();
 
         foreach ($users as $user)
         {

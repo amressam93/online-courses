@@ -11,7 +11,7 @@
                         Start Learning {{$countOfFreeCourses}} Courses For <strong style="color: white">Free</strong><br>
                         More Than {{$countOfUsers}} Users have Enrolled In {{$countOfCourses}} Courses In {{$countOfTrack}} Track
                     </p>
-                    <a href="pages/course-filter-list.html" class="btn btn-success">Browse Courses</a>
+                    <a href="{{route('all_courses')}}" class="btn btn-success">Browse Courses</a>
                     <a href="{{route('register')}}" class="btn btn-white">Are You Instructor?</a>
                 </div>
             </div>
