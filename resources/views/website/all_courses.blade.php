@@ -86,7 +86,7 @@
                             @foreach(\App\track::all() as $track)
                                 <div class="form-check mb-1">
                                     <input type="checkbox" value="{{$track->id}}" class="form-check-input common_selector course_track" id="reactCheck">
-                                    <label class="form-check-label" for="reactCheck">{{$track->name}}</label>
+                                    <label class="form-check-label" for="reactCheck">{{$track->name}} ({{$track->courses->count()}})</label>
                                 </div>
                             @endforeach
 
@@ -146,7 +146,7 @@
                             @foreach(\App\CourseLevel::all() as $level)
                                 <div class="form-check mb-1">
                                     <input type="checkbox" value="{{$level->id}}" class="form-check-input common_selector course_level" id="beginnerTwoCheck">
-                                    <label class="form-check-label" for="beginnerTwoCheck">{{$level->name}}</label>
+                                    <label class="form-check-label" for="beginnerTwoCheck">{{$level->name}} ({{$level->courses->count()}})</label>
                                 </div>
                             @endforeach
 
@@ -159,12 +159,12 @@
 
                             <div class="form-check mb-1">
                                 <input type="checkbox" value="0" class="form-check-input common_selector course_price" id="beginnerTwoCheck">
-                                <label class="form-check-label" for="beginnerTwoCheck">Free</label>
+                                <label class="form-check-label" for="beginnerTwoCheck">Free ({{\App\course::where('status',0)->count()}})</label>
                             </div>
 
                             <div class="form-check mb-1">
                                 <input type="checkbox" value="1" class="form-check-input common_selector course_price" id="beginnerTwoCheck">
-                                <label class="form-check-label" for="beginnerTwoCheck">Paid</label>
+                                <label class="form-check-label" for="beginnerTwoCheck">Paid ({{\App\course::where('status',1)->count()}})</label>
                             </div>
 
                         </div>

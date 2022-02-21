@@ -29,6 +29,8 @@ class allCoursesController extends Controller
 
             $displaying = ($courses->currentpage()-1)*$courses->perpage()+$courses->count();
 
+            $free_courses_count = course::orderBy('id','desc')->where('status',0)->count();
+            $paid_courses_count = course::orderBy('id','desc')->where('status',1)->count();
 
             $returnHTML = view('layouts.webiste.sections.all_courses_filter', ['courses' => $courses])->render();
 
